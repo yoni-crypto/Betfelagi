@@ -37,9 +37,9 @@ const EditHouse = () => {
     
         const formData = new FormData(event.target); // Collect form data
     
-        // Append existing images to the FormData
+        // Append existing images to the FormData (only send URLs for existing images)
         existingImages.forEach((image) => {
-            formData.append('existingImages', image); // Send existing images to backend
+            formData.append('existingImages', image); // Send existing images to backend (URLs from Cloudinary)
         });
     
         // Append the new images if any
@@ -58,7 +58,7 @@ const EditHouse = () => {
                     'Authorization': `Bearer ${token}`, 
                 },
             });
-            toast.success("Updated Sucessfully"); // Show success message
+            toast.success("Updated Successfully"); // Show success message
             navigate(`/houses/${id}`); // Redirect to house details page after successful update
         } catch (err) {
             toast.error('Failed to update house.'); // Show error message
@@ -162,7 +162,7 @@ const EditHouse = () => {
                         <option value="Villa">Villa</option>
                         <option value="Normal House">Normal House</option>
                         <option value="Commercial">Commercial</option>
-                        <option value="Condominium">Condominuim</option>
+                        <option value="Condominium">Condominium</option>
                     </select>
                 </div>
 
@@ -186,11 +186,11 @@ const EditHouse = () => {
                     <label className="block text-sm font-semibold">Images</label>
                     {existingImages.length > 0 || images.length > 0 ? (
                         <div className="flex flex-wrap gap-4">
-                            {/* Render existing images */}
+                            {/* Render existing images (Cloudinary URLs) */}
                             {existingImages.map((image, index) => (
                                 <div key={index} className="relative w-24 h-24">
                                     <img
-                                        src={`https://betfelagi-api.vercel.app/${image}`}
+                                        src={image} // Direct Cloudinary image URL
                                         alt={`existing-image-${index}`}
                                         className="w-full h-full object-cover rounded-md"
                                     />
