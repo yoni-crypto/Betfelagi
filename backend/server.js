@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const connectDB = require('./config/db');
+const path = require('path');
 
 const authRoutes = require('./routes/authRoutes');
 const houseRoutes = require('./routes/houseRoutes');
