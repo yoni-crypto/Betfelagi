@@ -102,7 +102,6 @@ const Home = () => {
             </p>
             <p className="text-sm md:text-base lg:text-lg text-white">
                 Want to find a home? We are ready to help you find one that suits your lifestyle and needs.
-                Want to find a home? We are ready to help you find one that suits your lifestyle and needs.
             </p>
             <div className="flex flex-wrap gap-8 items-center">
                 <div className="text-center">
