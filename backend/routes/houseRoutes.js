@@ -2,6 +2,9 @@ const express = require('express');
 const multer = require('multer');
 const { protect } = require('../middleware/authMiddleware');
 const { createHouse, getAllHouses, getHouseById, getFilteredHouses, editHouse, deleteHouse } = require('../controllers/houseController');
+const cloudinary = require('../config/cloudinaryConfig');
+
+
 
 const router = express.Router();
 
