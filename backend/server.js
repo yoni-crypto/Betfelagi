@@ -10,7 +10,7 @@ const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 connectDB();
-
+app.get("/", (req, res) => { res.send("hello"); });
 // Middleware
 app.use(cors());
 app.use(express.json());
