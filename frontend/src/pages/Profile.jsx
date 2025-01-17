@@ -4,26 +4,31 @@ import axios from 'axios';
 
 const Profile = () => {
     const { userId } = useParams();
+    const [userDetails, setUserDetails] = useState(null);
     const [userHouses, setUserHouses] = useState([]);
 
     useEffect(() => {
         const fetchUserHouses = async () => {
             try {
                 const { data } = await axios.get(`https://betfelagi-api.vercel.app/api/users/${userId}/houses`);
-                setUserHouses(data);
+                setUserDetails(data.user);
+                setUserHouses(data.listings);
             } catch (error) {
-                console.error(error);
+                console.error('Error fetching user data:', error);
             }
         };
         fetchUserHouses();
     }, [userId]);
 
-    if (userHouses.length === 0) return <p>Loading...</p>;
+    if (!userDetails) return <p>Loading...</p>;
 
     return (
         <div className="container mx-auto mt-16 py-8 max-w-6xl">
-            <h1 className="text-2xl font-bold">Listings by {userHouses[0].user.username}</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+            <div className="text-center mb-8">
+                <h1 className="text-3xl font-bold">{userDetails.username}'s Listings</h1>
+                <p className="text-lg text-gray-600">Phone: {userDetails.phoneNumber}</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {userHouses.map((house) => (
                     <div key={house._id} className="bg-white p-4 shadow-md rounded-md">
                         <img src={house.images[0]} alt={house.title} className="w-full h-48 object-cover rounded-md" />
