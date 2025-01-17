@@ -190,7 +190,7 @@ const EditHouse = () => {
                             {existingImages.map((image, index) => (
                                 <div key={index} className="relative w-24 h-24">
                                     <img
-                                        src={`http://localhost:5000/${image}`}
+                                        src={`https://betfelagi-api.vercel.app/${image}`}
                                         alt={`existing-image-${index}`}
                                         className="w-full h-full object-cover rounded-md"
                                     />
