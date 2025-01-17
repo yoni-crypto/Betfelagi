@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
             const token = localStorage.getItem('token');
             if (token) {
                 try {
-                    const { data } = await axios.get('http://localhost:5000/api/users/profile', {
+                    const { data } = await axios.get('https://betfelagi-api.vercel.app/api/users/profile', {
                         headers: {
                             Authorization: `Bearer ${token}`,
                         },
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (email, password) => {
-        const { data } = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+        const { data } = await axios.post('https://betfelagi-api.vercel.app/api/auth/login', { email, password });
         localStorage.setItem('token', data.token); 
         setUser(data.user); 
     };

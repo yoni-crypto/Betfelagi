@@ -15,7 +15,7 @@ const UserProfile = () => {
         const fetchUserProfile = async () => {
             const token = localStorage.getItem('token');
             try {
-                const { data } = await axios.get('http://localhost:5000/api/users/profile', {
+                const { data } = await axios.get('https://betfelagi-api.vercel.app/api/users/profile', {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -34,7 +34,7 @@ const UserProfile = () => {
     const handleDelete = async () => {
         try {
             const token = localStorage.getItem('token');
-            const { data } = await axios.delete(`http://localhost:5000/api/houses/delete/${selectedHouseId}`, {
+            const { data } = await axios.delete(`https://betfelagi-api.vercel.app/api/houses/delete/${selectedHouseId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

@@ -15,10 +15,10 @@ const HouseDetails = () => {
     useEffect(() => {
         const fetchHouse = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/api/houses/${id}`);
+                const { data } = await axios.get(`https://betfelagi-api.vercel.app/api/houses/${id}`);
                 setHouse(data);
                 if (data.images.length > 0) {
-                    setMainImage(`http://localhost:5000/${data.images[0]}`);
+                    setMainImage(`https://betfelagi-api.vercel.app/${data.images[0]}`);
                 }
             } catch (err) {
                 console.error(err);
@@ -47,14 +47,14 @@ const HouseDetails = () => {
     const handlePrevImage = () => {
         if (currentImageIndex > 0) {
             setCurrentImageIndex(currentImageIndex - 1);
-            setMainImage(`http://localhost:5000/${house.images[currentImageIndex - 1]}`);
+            setMainImage(`https://betfelagi-api.vercel.app/${house.images[currentImageIndex - 1]}`);
         }
     };
 
     const handleNextImage = () => {
         if (currentImageIndex < house.images.length - 1) {
             setCurrentImageIndex(currentImageIndex + 1);
-            setMainImage(`http://localhost:5000/${house.images[currentImageIndex + 1]}`);
+            setMainImage(`https://betfelagi-api.vercel.app/${house.images[currentImageIndex + 1]}`);
         }
     };
 
@@ -79,7 +79,7 @@ const HouseDetails = () => {
                                 {house.images.map((image, index) => (
                                     <img
                                         key={index}
-                                        src={`http://localhost:5000/${image}`}
+                                        src={`https://betfelagi-api.vercel.app/${image}`}
                                         alt={house.title}
                                         className="w-20 h-20 object-cover rounded-md cursor-pointer"
                                         onClick={() => handleThumbnailClick(`http://localhost:5000/${image}`, index)}

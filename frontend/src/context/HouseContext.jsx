@@ -10,7 +10,7 @@ export const HouseProvider = ({ children }) => {
     useEffect(() => {
         const fetchHouses = async () => {
             try {
-                const { data } = await axios.get('http://localhost:5000/api/houses');
+                const { data } = await axios.get('https://betfelagi-api.vercel.app/api/houses');
                 setHouses(data);
             } catch (err) {
                 console.error(err);

@@ -30,7 +30,7 @@ const CreateListing = () => {
         });
 
         try {
-            await axios.post('http://localhost:5000/api/houses/add', formData, {
+            await axios.post('https://betfelagi-api.vercel.app/api/houses/add', formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',

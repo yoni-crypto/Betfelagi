@@ -16,7 +16,7 @@ const Home = () => {
 
     const fetchHouses = async () => {
         try {
-            const { data } = await axios.get('http://localhost:5000/api/houses/get', {
+            const { data } = await axios.get('https://betfelagi-api.vercel.app/api/houses/get', {
                 params: { page: currentPage, ...filters }, 
             });
             setHouses(data.houses);
@@ -31,7 +31,7 @@ const Home = () => {
         setLoading(true); 
         setNoResults(false); 
         try {
-            const { data } = await axios.get('http://localhost:5000/api/houses/filter', {
+            const { data } = await axios.get('https://betfelagi-api.vercel.app/api/houses/filter', {
                 params: { page: currentPage, ...filters }, 
             });
 

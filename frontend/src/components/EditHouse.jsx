@@ -18,7 +18,7 @@ const EditHouse = () => {
         // Fetch house data when component is mounted
         const fetchHouse = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/api/houses/${id}`);
+                const { data } = await axios.get(`https://betfelagi-api.vercel.app/api/houses/${id}`);
                 setHouse(data); // Set house data from API response
                 setExistingImages(data.images || []); // Set existing images for the house
             } catch (err) {
@@ -52,7 +52,7 @@ const EditHouse = () => {
 
         const token = localStorage.getItem('token');
         try {
-            const { data } = await axios.put(`http://localhost:5000/api/houses/edit/${id}`, formData, {
+            const { data } = await axios.put(`https://betfelagi-api.vercel.app/api/houses/edit/${id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${token}`, 
