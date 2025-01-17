@@ -12,6 +12,7 @@ const app = express();
 connectDB();
 app.get("/", (req, res) => { res.send("hello"); });
 // Middleware
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
