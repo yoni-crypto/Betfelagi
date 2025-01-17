@@ -70,7 +70,7 @@ const CreateListing = () => {
     };
 
     return (
-        <div className="container mx-auto py-8 max-w-lg">
+        <div className="container mx-auto mt-12 py-8 max-w-lg">
             <ToastContainer position="top-center" autoClose={3000} />
             <h2 className="text-xl font-bold text-center mb-6">Add a New Listing</h2>
             <form onSubmit={handleAddHouse} className="bg-white shadow-md rounded-md p-6">
