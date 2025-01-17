@@ -19,7 +19,7 @@ const HouseCard = ({ house, onDelete }) => {
             >
                 {house.images && house.images.length > 0 ? (
                     <img
-                        src={`https://betfelagi-api.vercel.app/${house.images[0]}`}
+                        src={house.images[0]} // Using the full URL directly
                         alt={house.title}
                         className="w-full h-60 object-cover rounded-t-xl"
                     />
