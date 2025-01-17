@@ -24,7 +24,7 @@ const Login = () => {
     };
 
     return (
-        <div className="container mx-auto py-8 max-w-md">
+        <div className="container mx-auto mt-24 py-8 max-w-md">
             <ToastContainer position="top-center" autoClose={3000} />
             <h2 className="text-xl font-bold text-center mb-6">Login</h2>
             <form onSubmit={handleLogin} className="bg-white shadow-md rounded-md p-6">

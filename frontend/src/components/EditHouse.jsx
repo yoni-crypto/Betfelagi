@@ -93,7 +93,7 @@ const EditHouse = () => {
     if (error) return <p>{error}</p>; // Error state
 
     return (
-        <div className="container mx-auto py-8">
+        <div className="container mx-auto mt-12 py-8">
             <ToastContainer position="top-center" autoClose={3000} />
             <h1 className="text-2xl font-bold text-center mb-6">Edit House</h1>
             <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-md p-6 space-y-4">

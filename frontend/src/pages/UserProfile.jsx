@@ -65,7 +65,7 @@ const UserProfile = () => {
     if (!userProfile) return <p>No user profile found</p>;
 
     return (
-        <div className="container mx-auto py-8">
+        <div className="container mt-12 mx-auto py-8">
             <ToastContainer position="top-center" autoClose={3000} />
             <h1 className="text-2xl font-bold text-center text-blue-600 mb-4">User Profile</h1>
             <div className="bg-white shadow-md rounded-md p-4 mb-6">
