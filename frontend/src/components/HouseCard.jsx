@@ -38,17 +38,17 @@ const HouseCard = ({ house, onDelete }) => {
                 <h3 className="text-md font-bold text-gray-800 truncate">
                     {house.title}
                 </h3>
-                <p className="text-gray-500 text-sm flex items-center mt-1">
-                    <FaMapMarkerAlt className="text-red-600 mr-1" size={14} />
-                    {house.location}
-                </p>
+                <div className="flex justify-between items-center text-xs text-gray-500 mb-4">
+                    <div className="flex items-center">
+                        <FaMapMarkerAlt className="text-red-600 mr-1" size={12} />
+                        <span>{house.location}</span>
+                    </div>
+                    <span className="capitalize font-medium">{house.type}</span>
+                </div>
                 <p className="text-blue-600 font-bold text-lg mt-2">
                     ${house.price}
                     {!isForSale && <span className="text-sm text-gray-500">/month</span>}
                 </p>
-                <div className="text-gray-600 text-sm mt-2">
-                    Type: <span className="font-medium">{house.type}</span>
-                </div>
 
                 {/* Owner Actions */}
                 {isOwner && (
