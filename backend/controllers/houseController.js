@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const createHouse = async (req, res) => {
     const { title, description, price, location, category, type } = req.body;
-    const imagePaths = req.files ? req.files.map(file => file.path) : [];
+    const imageUrls = req.files ? req.files.map(file => file.path) : [];
 
     try {
         const house = await House.create({
@@ -12,7 +12,7 @@ const createHouse = async (req, res) => {
             description,
             price,
             location,
-            images: imagePaths,
+            images: imageUrls,
             user: req.user.id,
             category,
             type,
@@ -22,6 +22,7 @@ const createHouse = async (req, res) => {
         res.status(400).json({ message: 'Listing failed', error });
     }
 };
+
 
 const getAllHouses = async (req, res) => {
     const { page = 1, limit = 10 } = req.query; 
@@ -108,7 +109,7 @@ const deleteHouse = async (req, res) => {
 
 const editHouse = async (req, res) => {
     const { title, description, price, location, category, type, imagesToRemove } = req.body;
-    const imagePaths = req.files ? req.files.map(file => file.path) : [];
+    const imageUrls = req.files ? req.files.map(file => file.path) : [];
 
     try {
         const house = await House.findById(req.params.id);
@@ -126,14 +127,14 @@ const editHouse = async (req, res) => {
         house.category = category || house.category;
         house.type = type || house.type;
 
-        // Remove specified images from the database
+        // Remove specified images from Cloudinary
         if (imagesToRemove && Array.isArray(imagesToRemove)) {
-            house.images = house.images.filter(img => !imagesToRemove.includes(img)); // Filter out images to remove
+            house.images = house.images.filter(img => !imagesToRemove.includes(img));
         }
 
         // Append new images if any
-        if (imagePaths.length > 0) {
-            house.images = [...house.images, ...imagePaths]; // Add new images to the existing ones
+        if (imageUrls.length > 0) {
+            house.images = [...house.images, ...imageUrls];
         }
 
         await house.save();
@@ -143,8 +144,6 @@ const editHouse = async (req, res) => {
         res.status(500).json({ message: 'Failed to update house', error });
     }
 };
-
-module.exports = editHouse;
 
 
 module.exports = { createHouse, getAllHouses, getHouseById, getFilteredHouses, deleteHouse, editHouse };

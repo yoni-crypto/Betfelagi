@@ -5,11 +5,19 @@ const { createHouse, getAllHouses, getHouseById, getFilteredHouses, editHouse, d
 
 const router = express.Router();
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => cb(null, 'uploads/'),
-    filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
-});
-const upload = multer({ storage });
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => cb(null, 'uploads/'),
+//     filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
+// });
+// const upload = multer({ storage });
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+      folder: 'house-images', // Optional: folder name in Cloudinary
+      allowed_formats: ['jpg', 'jpeg', 'png'], // Allowed file formats
+    },
+  });
+  const upload = multer({ storage });
 
 router.post('/add', protect, upload.array('images', 5), createHouse);
 router.get('/get', getAllHouses);
