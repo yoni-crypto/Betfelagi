@@ -97,7 +97,7 @@ const HouseDetails = () => {
                             <p className="text-lg">
                                 Posted by: 
                                 <Link 
-                                    to={`/profile/${house.user._id}`} 
+                                    to={`/userprofile/${house.user._id}`} 
                                     className="text-blue-600 ml-2"
                                 >
                                     {house.user.username}
