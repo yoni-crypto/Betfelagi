@@ -75,7 +75,7 @@ const UserProfile = () => {
                 <p><strong>Phone Number:</strong> {userProfile.user.phoneNumber}</p>
             </div>
             <h2 className="text-xl font-semibold mb-4 p-2">Your Listings</h2>
-            <div className="grid grid-cols-2 p-2 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 p-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                 {userProfile.listings.length > 0 ? (
                     userProfile.listings.map(house => (
                         <HouseCard
