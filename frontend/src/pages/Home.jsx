@@ -202,7 +202,7 @@ const Home = () => {
                 </div>
             </section> */}
 
-            <section className='container mx-auto mt-12 px-4'> 
+            <section className='container mx-auto mt-36 px-4'> 
                 <h2 className=" text-2xl font-bold mb-6">Top Offers</h2>
                 <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
                     {houses.map((house) => (
