@@ -82,7 +82,7 @@ const HouseDetails = () => {
                                         src={`https://betfelagi-api.vercel.app/${image}`}
                                         alt={house.title}
                                         className="w-20 h-20 object-cover rounded-md cursor-pointer"
-                                        onClick={() => handleThumbnailClick(`http://localhost:5000/${image}`, index)}
+                                        onClick={() => handleThumbnailClick(`https://betfelagi-api.vercel.app/${image}`, index)}
                                     />
                                 ))}
                             </div>
