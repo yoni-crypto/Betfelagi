@@ -93,6 +93,18 @@ const HouseDetails = () => {
                             <FaMapMarkerAlt className="text-red-600 mr-2" size={14} />
                             {house.location}
                         </p>
+                        <div className="mt-4">
+                            <p className="text-lg">
+                                Posted by: 
+                                <Link 
+                                    to={`/profile/${house.user._id}`} 
+                                    className="text-blue-600 ml-2"
+                                >
+                                    {house.user.username}
+                                </Link>
+                            </p>
+                            <p>Email: {house.user.email}</p>
+                        </div>
                     </div>
                 </div>
 

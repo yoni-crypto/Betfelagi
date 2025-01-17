@@ -11,6 +11,7 @@ import { AuthProvider } from './context/authContext';
 import ProtectedRoute from './components/ProtectedRoute'; // Import the ProtectedRoute component
 import UserProfile from './pages/UserProfile';
 import EditHouse from './components/EditHouse';
+import Profile from './pages/Profile';
 
 const App = () => {
     return (
@@ -28,6 +29,7 @@ const App = () => {
                             <Route path="/houses/:id" element={<HouseDetails />} />
                             <Route path="/chat" element={<ProtectedRoute><Chat /></ProtectedRoute>} />
                             <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>}/>
+                            <Route path="/userprofile" element={<Profile />}/>
                         </Routes>
                     </main>
                     <Footer />
