@@ -18,7 +18,7 @@ const HouseDetails = () => {
                 const { data } = await axios.get(`https://betfelagi-api.vercel.app/api/houses/${id}`);
                 setHouse(data);
                 if (data.images.length > 0) {
-                    setMainImage(`https://betfelagi-api.vercel.app/${data.images[0]}`);
+                    setMainImage(data.images[0]);
                 }
             } catch (err) {
                 console.error(err);
@@ -38,7 +38,6 @@ const HouseDetails = () => {
     };
 
     const handleOverlayClick = (e) => {
-        // Close the modal if the overlay (background) is clicked
         if (e.target === e.currentTarget) {
             setShowModal(false);
         }
@@ -47,14 +46,14 @@ const HouseDetails = () => {
     const handlePrevImage = () => {
         if (currentImageIndex > 0) {
             setCurrentImageIndex(currentImageIndex - 1);
-            setMainImage(`https://betfelagi-api.vercel.app/${house.images[currentImageIndex - 1]}`);
+            setMainImage(house.images[currentImageIndex - 1]);
         }
     };
 
     const handleNextImage = () => {
         if (currentImageIndex < house.images.length - 1) {
             setCurrentImageIndex(currentImageIndex + 1);
-            setMainImage(`https://betfelagi-api.vercel.app/${house.images[currentImageIndex + 1]}`);
+            setMainImage(house.images[currentImageIndex + 1]);
         }
     };
 
@@ -63,7 +62,6 @@ const HouseDetails = () => {
     return (
         <div className="container mx-auto mt-16 py-8 max-w-6xl">
             <div className="flex flex-col p-2 lg:flex-row gap-8">
-                {/* Main Content */}
                 <div className="flex-1">
                     <div className="flex flex-col mb-4">
                         {mainImage && (
@@ -79,10 +77,10 @@ const HouseDetails = () => {
                                 {house.images.map((image, index) => (
                                     <img
                                         key={index}
-                                        src={`https://betfelagi-api.vercel.app/${image}`}
+                                        src={image}
                                         alt={house.title}
                                         className="w-20 h-20 object-cover rounded-md cursor-pointer"
-                                        onClick={() => handleThumbnailClick(`https://betfelagi-api.vercel.app/${image}`, index)}
+                                        onClick={() => handleThumbnailClick(image, index)}
                                     />
                                 ))}
                             </div>
@@ -95,15 +93,12 @@ const HouseDetails = () => {
                             <FaMapMarkerAlt className="text-red-600 mr-2" size={14} />
                             {house.location}
                         </p>
-                        {/* <p className="text-lg font-bold text-blue-600 mt-2">${house.price}/month</p> */}
                     </div>
                 </div>
 
-                {/* Right Sidebar */}
                 <div className="w-full lg:w-1/3 space-y-4">
                     <div className="bg-gray-100 p-4 shadow-md rounded-md mb-4">
                         <h2 className="text-lg font-bold text-blue-600 mt-2">${house.price}/month</h2>
-
                         <p className="text-lg font-medium mt-2">Category: {house.category}</p>
                         <p className="text-lg font-medium mt-1">Type: {house.type}</p>
                         <button
