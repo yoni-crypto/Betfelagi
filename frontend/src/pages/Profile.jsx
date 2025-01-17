@@ -28,15 +28,15 @@ const Profile = () => {
                 <h1 className="text-3xl font-bold">{userDetails.username}'s Listings</h1>
                 <p className="text-lg text-gray-600">Phone: {userDetails.phoneNumber}</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-3 sm:grid-cols-3 gap-2">
                 {userHouses.map((house) => (
-                    <div key={house._id} className="bg-white p-4 shadow-md rounded-md">
-                        <img src={house.images[0]} alt={house.title} className="w-full h-48 object-cover rounded-md" />
-                        <h2 className="text-lg font-bold mt-2 truncate" title={house.title}>
-                            {house.title}
-                        </h2>
-                        <p>{house.location}</p>
-                        <Link to={`/houses/${house._id}`} className="text-blue-600 mt-2 inline-block">View Details</Link>
+                    <div key={house._id} className="relative bg-black overflow-hidden">
+                        <img src={house.images[0]} alt={house.title} className="w-full h-48 object-cover" />
+                        <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2">
+                            <h2 className="text-sm font-bold truncate">{house.title}</h2>
+                            <p className="text-xs">{house.location}</p>
+                        </div>
+                        <Link to={`/houses/${house._id}`} className="absolute inset-0"></Link>
                     </div>
                 ))}
             </div>
