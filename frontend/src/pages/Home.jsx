@@ -100,7 +100,7 @@ const Home = () => {
             <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">
                 Find A House That Suits You
             </p>
-            <p className="text-sm md:text-base lg:text-lg text-white">
+            <p className="text-sm md:text-sm lg:text-lg text-white">
                 Want to find a home? We are ready to help you find one that suits your lifestyle and needs.
             </p>
             <div className="flex flex-wrap gap-8 items-center">
