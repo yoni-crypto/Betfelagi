@@ -23,7 +23,7 @@ const Profile = () => {
     if (!userDetails) return <p>Loading...</p>;
 
     return (
-        <div className="container mx-auto mt-16 py-8 max-w-6xl">
+        <div className="container p-2 mx-auto mt-16 py-8 max-w-6xl">
             <div className="text-center mb-8">
                 <h1 className="text-3xl font-bold">{userDetails.username}'s Listings</h1>
                 <p className="text-lg text-gray-600">Phone: {userDetails.phoneNumber}</p>
