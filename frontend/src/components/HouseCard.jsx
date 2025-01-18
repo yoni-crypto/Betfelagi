@@ -45,7 +45,7 @@ const HouseCard = ({ house, onDelete }) => {
                     </div>
                     <span className="capitalize font-medium">{house.type}</span>
                 </div>
-                <p className="text-blue-600 font-bold text-lg mt-2">
+                <p className="text-blue-600 font-bold text-lg ">
                     ${house.price}
                     {!isForSale && <span className="text-sm text-gray-500">/month</span>}
                 </p>
