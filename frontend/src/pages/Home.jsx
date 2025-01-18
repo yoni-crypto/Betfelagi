@@ -93,7 +93,7 @@ const Home = () => {
         <div className="mx-auto py-8">
             <header
                 className="relative bg-blue-50 px-6 md:px-24 lg:px-48 py-16 md:py-20 lg:py-24 bg-cover bg-center"
-                style={{ backgroundImage: 'url("./bg.jpg")', backgroundRepeat: 'no-repeat' }}
+                style={{ backgroundImage: 'url("./bg2.jpg")', backgroundRepeat: 'no-repeat' }}
             >
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                     <div className="space-y-6">
@@ -170,6 +170,7 @@ const Home = () => {
                     <BiFilter className="text-lg" /> Filter
                 </button>
             </div>
+            
 
             {/* Mobile Filter Modal */}
             {isFilterModalOpen && (
@@ -210,7 +211,7 @@ const Home = () => {
             )}
 
             {/* Main Section */}
-            <section className="container mx-auto mt-2 px-4">
+            <section className="container mx-auto mt-2 sm:mt-12 lg:mt-32 px-4">
                 <h2 className="text-2xl font-bold mb-6">Top Offers</h2>
                 <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
                     {houses.map((house) => (

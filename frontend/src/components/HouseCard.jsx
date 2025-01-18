@@ -9,7 +9,9 @@ const HouseCard = ({ house, onDelete }) => {
 
     const isForSale = house.type === 'Sell';
     const isOwner = user && house.user && house.user._id === user._id;
-
+    const formatPrice = (price) => {
+        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
     return (
         <div
             className="relative bg-white shadow-md rounded-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300 ease-in-out border border-gray-200"
@@ -44,10 +46,12 @@ const HouseCard = ({ house, onDelete }) => {
                     </div>
                     <span className="capitalize font-medium">{house.type}</span>
                 </div>
-                <p className="text-blue-600 font-bold text-lg sm:text-base">
-                    ${house.price}
-                    {!isForSale && <span className="text-sm text-gray-500">/month</span>}
-                </p>
+                <p className="text-xs sm:text-xl font-bold text-blue-600">
+                            {formatPrice(house.price)} ETB
+                            {house.type === 'Rent' && (
+                                <span className="text-sm text-gray-500"> / month</span>
+                            )}
+                        </p>
 
                 {/* Owner Actions */}
                 {isOwner && (

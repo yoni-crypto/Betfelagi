@@ -135,6 +135,7 @@ const UserProfile = () => {
 
                 <h2 className="text-xl font-semibold mt-4">Profile Information</h2>
                 <p><strong>Username:</strong> {userProfile.user.username}</p>
+                <h1 className="text-xl sm:text-3xl font-bold">{userDetails.firstName} {userDetails.lastName} || "no name"</h1>
                 <p><strong>Email:</strong> {userProfile.user.email}</p>
                 <p><strong>Phone Number:</strong> {userProfile.user.phoneNumber}</p>
             </div>

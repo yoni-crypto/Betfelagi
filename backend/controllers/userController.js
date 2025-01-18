@@ -17,6 +17,8 @@ const getUserProfile = async (req, res) => {
                 email: user.email,
                 phoneNumber: user.phoneNumber,
                 profileImage: user.profileImage,
+                firstName:user.firstName,
+                lastName:user.lastName,
             },
             listings: listings,
         });
@@ -44,6 +46,8 @@ const getUserHouses = async (req, res) => {
                 phoneNumber: user.phoneNumber,
                 email: user.email,
                 profileImage: user.profileImage,
+                firstName:user.firstName,
+                lastName:user.lastName,
             },
             listings: houses,
         });

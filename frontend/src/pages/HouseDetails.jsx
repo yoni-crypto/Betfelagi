@@ -56,6 +56,16 @@ const HouseDetails = () => {
             setMainImage(house.images[currentImageIndex + 1]);
         }
     };
+    const formatPrice = (price) => {
+        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+    const formatPhoneNumber = (phoneNumber) => {
+        if (phoneNumber.startsWith("09")) {
+            return `+251${phoneNumber.substring(1)}`;
+        }
+        return phoneNumber; // Return the number as is if it doesn't match
+    };
+
 
     if (!house) return <p className="text-center text-gray-500">Loading...</p>;
 
@@ -99,8 +109,11 @@ const HouseDetails = () => {
                 <div className="w-full lg:w-1/3 space-y-6">
                     {/* Price and Category Section */}
                     <div className="bg-gray-100 p-4 shadow-md rounded-md">
-                        <h2 className="text-lg sm:text-xl font-bold text-blue-600">${house.price}
-                            {<span className="text-sm text-gray-500">/month</span>}
+                        <h2 className="text-lg sm:text-xl font-bold text-blue-600">
+                            {formatPrice(house.price)} ETB
+                            {house.type === 'Rent' && (
+                                <span className="text-sm text-gray-500"> / month</span>
+                            )}
                         </h2>
                         <p className="text-sm sm:text-base font-medium mt-2">Category: {house.category}</p>
                         <p className="text-sm sm:text-base font-medium mt-1">Type: {house.type}</p>
@@ -119,8 +132,13 @@ const HouseDetails = () => {
                                 Posted by:
                             </p>
                             <h3 className="text-sm sm:text-lg font-bold">{house.user.username}</h3>
-                            <p className="text-gray-600 text-xs sm:text-sm">Email: {house.user.email}</p>
-                            <p className="text-gray-600 text-xs sm:text-sm">Phone: {house.user.phoneNumber}</p>
+                            <h3 className="text-sm sm:text-lg font-bold">{house.user.firstName} {house.user.lastName} || "no name"</h3>
+                            <p className="text-gray-600 text-xs sm:text-sm">
+                                Email: <a href={`mailto:${house.user.email}`} className="text-blue-500 hover:underline">{house.user.email}</a>
+                            </p>
+                            <p className="text-gray-600 text-xs sm:text-sm">
+                                Phone: <a href={`tel:${formatPhoneNumber(house.user.phoneNumber)}`} className="text-blue-500 hover:underline">{formatPhoneNumber(house.user.phoneNumber)}</a>
+                            </p>
                             <button
                                 onClick={() => navigate(`/userprofile/${house.user._id}`)}
                                 className="bg-green-500 text-white px-4 py-2 rounded-md mt-2 text-xs sm:text-sm"

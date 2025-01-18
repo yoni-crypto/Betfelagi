@@ -9,6 +9,8 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const navigate = useNavigate();
 
     const handleRegister = async (e) => {
@@ -19,9 +21,11 @@ const Register = () => {
                 email,
                 password,
                 phoneNumber,
+                firstName,
+                lastName,
             });
             toast.success("Registered successfully. Please log in!");
-            setTimeout(() => navigate('/login'), 3000); // Redirect after 3 seconds
+            setTimeout(() => navigate('/login'), 1000); // Redirect after 3 seconds
         } catch (err) {
             console.error(err);
             const errorMessage = err.response?.data?.message || "Registration failed. Please try again.";
@@ -40,6 +44,26 @@ const Register = () => {
                         type="text"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
+                        className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1"
+                        required
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-sm font-semibold">First Name</label>
+                    <input
+                        type="text"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1"
+                        required
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-sm font-semibold">Last Name</label>
+                    <input
+                        type="text"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
                         className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1"
                         required
                     />

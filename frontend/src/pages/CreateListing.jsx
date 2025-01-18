@@ -94,7 +94,7 @@ const CreateListing = () => {
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-sm font-semibold">Price ($/month)</label>
+                    <label className="block text-sm font-semibold">Price </label>
                     <input
                         type="number"
                         value={price}
