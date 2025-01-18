@@ -1,4 +1,3 @@
-// HouseCard Component
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaEdit, FaTrash, FaMapMarkerAlt } from 'react-icons/fa';
@@ -34,25 +33,25 @@ const HouseCard = ({ house, onDelete }) => {
             </div>
 
             {/* Content Section */}
-            <div className="p-4">
-                <h3 className="text-md font-bold text-gray-800 truncate">
+            <div className="p-4 md:p-4 sm:p-2">
+                <h3 className="text-md font-bold text-gray-800 truncate sm:mb-1 md:mb-2">
                     {house.title}
                 </h3>
-                <div className="flex justify-between items-center text-xs text-gray-500 mb-4">
+                <div className="flex justify-between items-center text-xs text-gray-500 mb-2 sm:mb-1">
                     <div className="flex items-center">
                         <FaMapMarkerAlt className="text-red-600 mr-1" size={12} />
                         <span>{house.location}</span>
                     </div>
                     <span className="capitalize font-medium">{house.type}</span>
                 </div>
-                <p className="text-blue-600 font-bold text-lg ">
+                <p className="text-blue-600 font-bold text-lg sm:text-base">
                     ${house.price}
                     {!isForSale && <span className="text-sm text-gray-500">/month</span>}
                 </p>
 
                 {/* Owner Actions */}
                 {isOwner && (
-                    <div className="flex justify-end space-x-4 mt-4">
+                    <div className="flex justify-end space-x-4 mt-4 sm:mt-2">
                         <Link to={`/edit-house/${house._id}`}>
                             <FaEdit className="text-blue-600 hover:text-blue-800" size={20} />
                         </Link>

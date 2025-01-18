@@ -10,7 +10,7 @@ const HouseDetails = () => {
     const [showModal, setShowModal] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const navigate = useNavigate();
-    const isForSale = house.type === 'Sell';
+    // const isForSale = house.type === 'Sell';
 
     useEffect(() => {
         const fetchHouse = async () => {
@@ -100,8 +100,8 @@ const HouseDetails = () => {
                     {/* Price and Category Section */}
                     <div className="bg-gray-100 p-4 shadow-md rounded-md">
                         <h2 className="text-lg sm:text-xl font-bold text-blue-600">${house.price}
-                        {!isForSale && <span className="text-sm text-gray-500">/month</span>}
-                            </h2>
+                            {<span className="text-sm text-gray-500">/month</span>}
+                        </h2>
                         <p className="text-sm sm:text-base font-medium mt-2">Category: {house.category}</p>
                         <p className="text-sm sm:text-base font-medium mt-1">Type: {house.type}</p>
                     </div>
@@ -114,6 +114,10 @@ const HouseDetails = () => {
                             className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover"
                         />
                         <div>
+                            {/* "Posted by" Label */}
+                            <p className="text-gray-500 text-xs sm:text-sm mb-1">
+                                Posted by:
+                            </p>
                             <h3 className="text-sm sm:text-lg font-bold">{house.user.username}</h3>
                             <p className="text-gray-600 text-xs sm:text-sm">Email: {house.user.email}</p>
                             <p className="text-gray-600 text-xs sm:text-sm">Phone: {house.user.phoneNumber}</p>
@@ -125,6 +129,7 @@ const HouseDetails = () => {
                             </button>
                         </div>
                     </div>
+
 
                     {/* Safety Tips Section */}
                     <div className="bg-gray-100 p-4 shadow-md rounded-md">

@@ -32,7 +32,7 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                {/* Deskt*/}
+                {/* Desktop Navigation */}
                 <div className="hidden lg:flex items-center space-x-6 text-sm">
                     {user ? (
                         <>
@@ -80,6 +80,7 @@ const Navbar = () => {
                 </div>
             </div>
 
+            {/* Overlay when menu is open */}
             {menuOpen && (
                 <div
                     onClick={() => setMenuOpen(false)}
@@ -87,12 +88,13 @@ const Navbar = () => {
                 ></div>
             )}
 
+            {/* Mobile Sidebar */}
             <div
                 className={`lg:hidden fixed top-0 right-0 w-64 bg-blue-600 bg-opacity-95 transform ${
                     menuOpen ? 'translate-x-0' : 'translate-x-full'
-                } transition-transform duration-300 z-50 shadow-lg h-full`}
+                } transition-transform duration-300 z-50 shadow-lg`}
             >
-                <div className="flex flex-col items-center mt-16 text-sm">
+                <div className="flex flex-col items-center pt-8 pb-4 px-4 space-y-4">
                     <button
                         className="absolute top-4 right-4 text-white text-2xl"
                         onClick={() => setMenuOpen(false)}
@@ -103,28 +105,28 @@ const Navbar = () => {
                         <>
                             <Link
                                 to="/"
-                                className="mb-4 hover:text-gray-200 text-white"
+                                className="hover:text-gray-200 text-white"
                                 onClick={() => setMenuOpen(false)}
                             >
                                 Home
                             </Link>
                             <Link
                                 to="/create-listing"
-                                className="mb-4 hover:text-gray-200 text-white"
+                                className="hover:text-gray-200 text-white"
                                 onClick={() => setMenuOpen(false)}
                             >
                                 Create Listing
                             </Link>
                             <Link
                                 to="/profile"
-                                className="mb-4 hover:text-gray-200 text-white"
+                                className="hover:text-gray-200 text-white"
                                 onClick={() => setMenuOpen(false)}
                             >
                                 Profile
                             </Link>
                             <button
                                 onClick={handleLogout}
-                                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full shadow-sm mb-4 transition duration-300"
+                                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full shadow-sm transition duration-300"
                             >
                                 Logout
                             </button>
@@ -133,14 +135,14 @@ const Navbar = () => {
                         <>
                             <Link
                                 to="/login"
-                                className="mb-4 hover:text-gray-200 text-white"
+                                className="hover:text-gray-200 text-white"
                                 onClick={() => setMenuOpen(false)}
                             >
                                 Sign In
                             </Link>
                             <Link
                                 to="/register"
-                                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full shadow-sm mb-4 transition duration-300"
+                                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full shadow-sm transition duration-300"
                                 onClick={() => setMenuOpen(false)}
                             >
                                 Register
