@@ -7,7 +7,6 @@ const HouseDetails = () => {
     const { id } = useParams();
     const [house, setHouse] = useState(null);
     const [mainImage, setMainImage] = useState('');
-    const [showPhoneNumber, setShowPhoneNumber] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const navigate = useNavigate();
@@ -57,90 +56,89 @@ const HouseDetails = () => {
         }
     };
 
-    if (!house) return <p>Loading...</p>;
+    if (!house) return <p className="text-center text-gray-500">Loading...</p>;
 
     return (
-        <div className="container mx-auto mt-16 py-8 max-w-6xl">
-            <div className="flex flex-col p-2 lg:flex-row gap-8">
+        <div className="container mx-auto mt-16 py-8 max-w-6xl px-4 lg:px-0">
+            <div className="flex flex-col lg:flex-row gap-8">
+                {/* Main Image Section */}
                 <div className="flex-1">
                     <div className="flex flex-col mb-4">
                         {mainImage && (
                             <img
                                 src={mainImage}
                                 alt={house.title}
-                                className="w-full h-[500px] object-cover rounded-md cursor-pointer"
+                                className="w-full h-[300px] sm:h-[500px] object-cover rounded-md cursor-pointer transition-transform hover:scale-105"
                                 onClick={() => setShowModal(true)}
                             />
                         )}
-                        <div className="flex overflow-x-auto mt-4">
-                            <div className="flex gap-2">
-                                {house.images.map((image, index) => (
-                                    <img
-                                        key={index}
-                                        src={image}
-                                        alt={house.title}
-                                        className="w-20 h-20 object-cover rounded-md cursor-pointer"
-                                        onClick={() => handleThumbnailClick(image, index)}
-                                    />
-                                ))}
-                            </div>
+                        <div className="flex overflow-x-auto mt-4 gap-2">
+                            {house.images.map((image, index) => (
+                                <img
+                                    key={index}
+                                    src={image}
+                                    alt={house.title}
+                                    className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-md cursor-pointer transition-transform hover:scale-105"
+                                    onClick={() => handleThumbnailClick(image, index)}
+                                />
+                            ))}
                         </div>
                     </div>
-                    <div className="bg-white p-4 shadow-md rounded-md mb-4">
-                        <h1 className="text-2xl font-bold">{house.title}</h1>
-                        <p className="text-gray-600">{house.description}</p>
-                        <p className="text-gray-500 text-lg font-semibold flex items-center mb-4">
-                            <FaMapMarkerAlt className="text-red-600 mr-2" size={14} />
+                    <div className="bg-white p-4 shadow-md rounded-md">
+                        <h1 className="text-xl sm:text-2xl font-bold">{house.title}</h1>
+                        <p className="text-gray-600 mt-2 text-sm sm:text-base">{house.description}</p>
+                        <p className="text-gray-500 text-sm sm:text-lg font-semibold flex items-center mt-4">
+                            <FaMapMarkerAlt className="text-red-600 mr-2" size={16} />
                             {house.location}
                         </p>
                     </div>
                 </div>
 
-                <div className="w-full lg:w-1/3 space-y-4">
+                {/* Sidebar Section */}
+                <div className="w-full lg:w-1/3 space-y-6">
                     {/* Price and Category Section */}
-                    <div className="bg-gray-100 p-4 shadow-md rounded-md mb-4">
-                        <h2 className="text-lg font-bold text-blue-600 mt-2">${house.price}/month</h2>
-                        <p className="text-lg font-medium mt-2">Category: {house.category}</p>
-                        <p className="text-lg font-medium mt-1">Type: {house.type}</p>
+                    <div className="bg-gray-100 p-4 shadow-md rounded-md">
+                        <h2 className="text-lg sm:text-xl font-bold text-blue-600">${house.price}/month</h2>
+                        <p className="text-sm sm:text-base font-medium mt-2">Category: {house.category}</p>
+                        <p className="text-sm sm:text-base font-medium mt-1">Type: {house.type}</p>
                     </div>
 
                     {/* User Info Section */}
-                    <div className="bg-gray-100 p-4 shadow-md rounded-md mb-4 flex items-center gap-4">
+                    <div className="bg-gray-100 p-4 shadow-md rounded-md flex items-center gap-4">
                         <img
                             src={house.user.profileImage || '/default-profile-icon.png'}
                             alt={house.user.username}
-                            className="w-20 h-20 rounded-full object-cover"
+                            className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover"
                         />
                         <div>
-                            <h3 className="text-lg font-bold">{house.user.username}</h3>
-                            <p className="text-gray-600">Email: {house.user.email}</p>
-                            <p className="text-gray-600">
-                                Phone: { house.user.phoneNumber}
-                            </p>
+                            <h3 className="text-sm sm:text-lg font-bold">{house.user.username}</h3>
+                            <p className="text-gray-600 text-xs sm:text-sm">Email: {house.user.email}</p>
+                            <p className="text-gray-600 text-xs sm:text-sm">Phone: {house.user.phoneNumber}</p>
                             <button
                                 onClick={() => navigate(`/userprofile/${house.user._id}`)}
-                                className="bg-green-500 text-white px-4 py-2 rounded-md mt-2"
+                                className="bg-green-500 text-white px-4 py-2 rounded-md mt-2 text-xs sm:text-sm"
                             >
-                                Show Account
+                                View Profile
                             </button>
                         </div>
                     </div>
 
                     {/* Safety Tips Section */}
-                    <div className="bg-gray-100 p-4 shadow-md rounded-md mb-4">
-                        <h2 className="text-xl font-bold">Safety tips</h2>
-                        <ul className="list-disc list-inside">
-                            <li>Avoid paying in advance, even for delivery</li>
-                            <li>Meet with the seller at a safe public place</li>
-                            <li>Inspect the item and ensure it's exactly what you want</li>
-                            <li>Only pay if you're satisfied</li>
+                    <div className="bg-gray-100 p-4 shadow-md rounded-md">
+                        <h2 className="text-sm sm:text-xl font-bold">Safety Tips for Buyers</h2>
+                        <ul className="list-disc list-inside text-xs sm:text-sm text-gray-600 mt-2">
+                            <li>Visit the property in person before making any payment.</li>
+                            <li>Avoid paying in advance without signed lease agreements.</li>
+                            <li>Ensure the property matches the listing description.</li>
+                            <li>Meet the seller in a safe public place for discussions.</li>
+                            <li>Only proceed if you’re satisfied with the terms and conditions.</li>
                         </ul>
                     </div>
 
                     {/* Feedback Section */}
                     <div className="bg-gray-100 p-4 shadow-md rounded-md">
-                        <h2 className="text-xl font-bold">Feedback</h2>
-                        <p className="text-blue-600 cursor-pointer">View all feedback</p>
+                        <h2 className="text-sm sm:text-xl font-bold">Feedback</h2>
+                        <p className="text-blue-600 cursor-pointer text-xs sm:text-sm mt-2">View all feedback</p>
                     </div>
                 </div>
             </div>
@@ -169,14 +167,14 @@ const HouseDetails = () => {
                             <button
                                 onClick={handlePrevImage}
                                 disabled={currentImageIndex === 0}
-                                className="bg-gray-500 text-white px-4 py-2 rounded-md"
+                                className="bg-gray-500 text-white px-4 py-2 rounded-md text-sm sm:text-base"
                             >
                                 Previous
                             </button>
                             <button
                                 onClick={handleNextImage}
                                 disabled={currentImageIndex === house.images.length - 1}
-                                className="bg-gray-500 text-white px-4 py-2 rounded-md"
+                                className="bg-gray-500 text-white px-4 py-2 rounded-md text-sm sm:text-base"
                             >
                                 Next
                             </button>
