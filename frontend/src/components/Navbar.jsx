@@ -14,7 +14,6 @@ const Navbar = () => {
     return (
         <nav className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white py-2 fixed w-full z-50 shadow-lg">
             <div className="container mx-auto flex justify-between items-center px-4">
-                {/* Logo */}
                 <Link
                     to="/"
                     className="text-xl font-semibold tracking-wide hover:text-gray-200 transition duration-300"
@@ -33,7 +32,7 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                {/* Desktop  */}
+                {/* Deskt*/}
                 <div className="hidden lg:flex items-center space-x-6 text-sm">
                     {user ? (
                         <>
