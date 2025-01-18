@@ -33,8 +33,9 @@ const Profile = () => {
                         className="w-20 h-20 rounded-full object-cover border-2 border-gray-300"
                     />
                 </div>
-                <h1 className="text-xl sm:text-3xl font-bold">{userDetails.username}'s Listings</h1>
+                <h1 className="text-xl sm:text-3xl font-bold">{userDetails.username}</h1>
                 <p className="text-sm sm:text-lg text-gray-600">Phone: {userDetails.phoneNumber}</p>
+                <p className="text-sm sm:text-lg text-gray-600">Email: {userDetails.email}</p>
             </div>
 
             {/* User Listings */}
