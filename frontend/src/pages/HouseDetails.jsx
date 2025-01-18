@@ -93,40 +93,40 @@ const HouseDetails = () => {
                             <FaMapMarkerAlt className="text-red-600 mr-2" size={14} />
                             {house.location}
                         </p>
-                        <div className="mt-4">
-                            <p className="text-lg">
-                                Posted by: 
-                                <Link 
-                                    to={`/userprofile/${house.user._id}`} 
-                                    className="text-blue-600 ml-2"
-                                >
-                                    {house.user.username}
-                                </Link>
-                            </p>
-                            <p>Email: {house.user.email}</p>
-                        </div>
                     </div>
                 </div>
 
                 <div className="w-full lg:w-1/3 space-y-4">
+                    {/* Price and Category Section */}
                     <div className="bg-gray-100 p-4 shadow-md rounded-md mb-4">
                         <h2 className="text-lg font-bold text-blue-600 mt-2">${house.price}/month</h2>
                         <p className="text-lg font-medium mt-2">Category: {house.category}</p>
                         <p className="text-lg font-medium mt-1">Type: {house.type}</p>
-                        <button
-                            onClick={() => setShowPhoneNumber(!showPhoneNumber)}
-                            className="bg-green-500 text-white px-4 py-2 mr-6 rounded-md mt-4"
-                        >
-                            {showPhoneNumber ? house.user.phoneNumber : 'Show Contact'}
-                        </button>
-
-                        <button
-                            onClick={() => navigate('/chat')}
-                            className="bg-blue-500 text-white px-4 py-2 rounded-md mt-2"
-                        >
-                            Start chat
-                        </button>
                     </div>
+
+                    {/* User Info Section */}
+                    <div className="bg-gray-100 p-4 shadow-md rounded-md mb-4 flex items-center gap-4">
+                        <img
+                            src={house.user.profileImage || '/default-profile-icon.png'}
+                            alt={house.user.username}
+                            className="w-20 h-20 rounded-full object-cover"
+                        />
+                        <div>
+                            <h3 className="text-lg font-bold">{house.user.username}</h3>
+                            <p className="text-gray-600">Email: {house.user.email}</p>
+                            <p className="text-gray-600">
+                                Phone: {showPhoneNumber ? house.user.phoneNumber : 'Hidden'}
+                            </p>
+                            <button
+                                onClick={() => setShowPhoneNumber(!showPhoneNumber)}
+                                className="bg-green-500 text-white px-4 py-2 rounded-md mt-2"
+                            >
+                                {showPhoneNumber ? 'Hide Contact' : 'Show Contact'}
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Safety Tips Section */}
                     <div className="bg-gray-100 p-4 shadow-md rounded-md mb-4">
                         <h2 className="text-xl font-bold">Safety tips</h2>
                         <ul className="list-disc list-inside">
@@ -136,6 +136,8 @@ const HouseDetails = () => {
                             <li>Only pay if you're satisfied</li>
                         </ul>
                     </div>
+
+                    {/* Feedback Section */}
                     <div className="bg-gray-100 p-4 shadow-md rounded-md">
                         <h2 className="text-xl font-bold">Feedback</h2>
                         <p className="text-blue-600 cursor-pointer">View all feedback</p>
@@ -143,6 +145,7 @@ const HouseDetails = () => {
                 </div>
             </div>
 
+            {/* Modal for Images */}
             {showModal && (
                 <div
                     className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
