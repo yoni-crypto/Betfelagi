@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const House = require('../models/House');
-
+const cloudinary = require('../config/cloudinaryConfig');
 const getUserProfile = async (req, res) => {
     try {
         const user = await User.findById(req.user.id);
@@ -15,7 +15,7 @@ const getUserProfile = async (req, res) => {
                 username: user.username,
                 email: user.email,
                 phoneNumber: user.phoneNumber,
-                
+                profileImage: user.profileImage,
             },
             listings: listings,
         });
@@ -41,6 +41,7 @@ const getUserHouses = async (req, res) => {
             user: {
                 username: user.username,
                 phoneNumber: user.phoneNumber,
+                profileImage: user.profileImage,
             },
             listings: houses,
         });
@@ -50,9 +51,43 @@ const getUserHouses = async (req, res) => {
     }
 };
 
+const cloudinary = require('../config/cloudinaryConfig');
+const User = require('../models/User');
+
+const uploadProfileImage = async (req, res) => {
+    try {
+        const { id } = req.user; // Assuming `req.user` is populated via authentication middleware
+        const user = await User.findById(id);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Check if file exists
+        if (!req.file) {
+            return res.status(400).json({ message: 'No file uploaded' });
+        }
+
+        // Update user profile image
+        const result = await cloudinary.uploader.upload(req.file.path, {
+            folder: 'profile-images', // Optional: Cloudinary folder
+        });
+
+        user.profileImage = result.secure_url;
+        await user.save();
+
+        res.status(200).json({ message: 'Profile image updated successfully', profileImage: user.profileImage });
+    } catch (error) {
+        console.error('Error uploading profile image:', error);
+        res.status(500).json({ message: 'Failed to upload profile image', error });
+    }
+};
+
+
 
 
 module.exports = {
     getUserProfile,
     getUserHouses,
+    uploadProfileImage,
 };
