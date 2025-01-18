@@ -1,5 +1,7 @@
 const User = require('../models/User');
 const House = require('../models/House');
+const cloudinary = require('../config/cloudinaryConfig');
+
 const getUserProfile = async (req, res) => {
     try {
         const user = await User.findById(req.user.id);
@@ -50,8 +52,7 @@ const getUserHouses = async (req, res) => {
     }
 };
 
-const cloudinary = require('../config/cloudinaryConfig');
-const User = require('../models/User');
+
 
 const uploadProfileImage = async (req, res) => {
     try {
