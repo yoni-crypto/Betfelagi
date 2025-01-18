@@ -83,7 +83,7 @@ const getFilteredHouses = async (req, res) => {
 
 const getHouseById = async (req, res) => {
     try {
-        const house = await House.findById(req.params.id).populate('user', 'username email phoneNumber');
+        const house = await House.findById(req.params.id).populate('user', 'username email phoneNumber profileImage');
         if (!house) return res.status(404).json({ message: 'House not found' });
         res.json(house);
     } catch (error) {
