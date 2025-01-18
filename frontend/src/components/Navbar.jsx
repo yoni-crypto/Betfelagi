@@ -82,7 +82,6 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Mobile Menu Overlay */}
             {menuOpen && (
                 <div
                     onClick={() => setMenuOpen(false)}
@@ -90,7 +89,6 @@ const Navbar = () => {
                 ></div>
             )}
 
-            {/* Mobile Menu */}
             <div
                 className={`lg:hidden fixed top-0 right-0 w-64 bg-blue-600 bg-opacity-95 transform ${
                     menuOpen ? 'translate-x-0' : 'translate-x-full'
