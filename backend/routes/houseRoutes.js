@@ -18,7 +18,7 @@ const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
       folder: 'house-images', // Optional: folder name in Cloudinary
-      allowed_formats: ['jpg', 'jpeg', 'png'], // Allowed file formats
+      allowed_formats: ['jpg', 'jpeg', 'png','webp','avif'], // Allowed file formats
     },
   });
   const upload = multer({ storage });

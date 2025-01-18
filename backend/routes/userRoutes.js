@@ -12,7 +12,7 @@ const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
         folder: 'profile-images', // Optional Cloudinary folder name
-        allowed_formats: ['jpg', 'jpeg', 'png'], // Allowed formats
+        allowed_formats: ['jpg', 'jpeg', 'png','webp','avif'], // Allowed formats
     },
 });
 const upload = multer({ storage });
