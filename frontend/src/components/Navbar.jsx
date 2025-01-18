@@ -33,7 +33,7 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                {/* Desktop Menu */}
+                {/* Desktop  */}
                 <div className="hidden lg:flex items-center space-x-6 text-sm">
                     {user ? (
                         <>
