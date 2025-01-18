@@ -22,7 +22,6 @@ const Navbar = () => {
                     Bet Felagi
                 </Link>
 
-                {/* Hamburger Menu (Mobile) */}
                 <div className="lg:hidden">
                     <div
                         className="cursor-pointer"
