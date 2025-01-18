@@ -10,10 +10,6 @@ const Showcase = () => {
             />
             <div className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-t from-black opacity-50 rounded-lg" />
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
-                <h2 className="text-3xl font-bold mb-4">Find Your Dream Home</h2>
-                <p className="text-lg">
-                    Browse through our collection of beautiful properties and find the one that fits your needs.
-                </p>
             </div>
         </div>
     );
