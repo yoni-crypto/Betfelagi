@@ -25,7 +25,7 @@ const createHouse = async (req, res) => {
 
 
 const getAllHouses = async (req, res) => {
-    const { page = 1, limit = 10 } = req.query; 
+    const { page = 1, limit = 20 } = req.query; 
     try {
         const houses = await House.find()
             .populate('user', 'username email phoneNumber')
@@ -46,7 +46,7 @@ const getAllHouses = async (req, res) => {
 };
 
 const getFilteredHouses = async (req, res) => {
-    const { priceRange, type, category, page = 1, limit = 10 } = req.query;
+    const { priceRange, type, category, page = 1, limit = 20 } = req.query;
     try {
         const query = {};
 

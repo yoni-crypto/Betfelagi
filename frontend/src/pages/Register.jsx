@@ -49,7 +49,7 @@ const Register = () => {
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-sm font-semibold">FirstName</label>
+                    <label className="block text-sm font-semibold">First Name</label>
                     <input
                         type="text"
                         value={firstName}
