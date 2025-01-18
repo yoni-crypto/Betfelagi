@@ -115,13 +115,13 @@ const HouseDetails = () => {
                             <h3 className="text-lg font-bold">{house.user.username}</h3>
                             <p className="text-gray-600">Email: {house.user.email}</p>
                             <p className="text-gray-600">
-                                Phone: {showPhoneNumber ? house.user.phoneNumber : 'Hidden'}
+                                Phone: { house.user.phoneNumber}
                             </p>
                             <button
-                                onClick={() => setShowPhoneNumber(!showPhoneNumber)}
+                                onClick={() => navigate(`/userprofile/${house.user._id}`)}
                                 className="bg-green-500 text-white px-4 py-2 rounded-md mt-2"
                             >
-                                {showPhoneNumber ? 'Hide Contact' : 'Show Contact'}
+                                Show Account
                             </button>
                         </div>
                     </div>
