@@ -1,5 +1,5 @@
 const express = require('express');
-const { getUserProfile, getUserHouses } = require('../controllers/userController');
+const { getUserProfile, getUserHouses, uploadProfileImage } = require('../controllers/userController');
 const { protect } = require('../middleware/authMiddleware');
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const cloudinary = require('../config/cloudinaryConfig');
