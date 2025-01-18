@@ -10,6 +10,7 @@ const HouseDetails = () => {
     const [showModal, setShowModal] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const navigate = useNavigate();
+    const isForSale = house.type === 'Sell';
 
     useEffect(() => {
         const fetchHouse = async () => {
@@ -98,7 +99,9 @@ const HouseDetails = () => {
                 <div className="w-full lg:w-1/3 space-y-6">
                     {/* Price and Category Section */}
                     <div className="bg-gray-100 p-4 shadow-md rounded-md">
-                        <h2 className="text-lg sm:text-xl font-bold text-blue-600">${house.price}/month</h2>
+                        <h2 className="text-lg sm:text-xl font-bold text-blue-600">${house.price}
+                        {!isForSale && <span className="text-sm text-gray-500">/month</span>}
+                            </h2>
                         <p className="text-sm sm:text-base font-medium mt-2">Category: {house.category}</p>
                         <p className="text-sm sm:text-base font-medium mt-1">Type: {house.type}</p>
                     </div>
@@ -149,7 +152,7 @@ const HouseDetails = () => {
                     className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
                     onClick={handleOverlayClick}
                 >
-                    <div className="bg-white p-6 rounded-md max-w-5xl max-h-[90vh] w-full relative">
+                    <div className="bg-white p-2 rounded-md max-w-5xl max-h-[90vh] w-full relative">
                         <button
                             onClick={handleModalClose}
                             className="absolute top-2 right-2 bg-red-500 text-white text-2xl rounded-full w-8 h-8 flex justify-center items-center"
