@@ -42,6 +42,7 @@ const getUserHouses = async (req, res) => {
             user: {
                 username: user.username,
                 phoneNumber: user.phoneNumber,
+                email: user.email,
                 profileImage: user.profileImage,
             },
             listings: houses,
