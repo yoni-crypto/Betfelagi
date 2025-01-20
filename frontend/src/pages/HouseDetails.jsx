@@ -67,7 +67,10 @@ const HouseDetails = () => {
     };
 
 
-    if (!house) return <p className="text-center text-gray-500">Loading...</p>;
+    if (!house) return <div className="flex justify-center items-center">
+        <div className=" animate-spin h-6 w-6 border-t-2 border-blue-500 rounded-full mr-2"></div>
+        <span>Loading...</span>
+    </div>
 
     return (
         <div className="container mx-auto lg:mt-16  py-8 max-w-6xl px-4 lg:px-0">
