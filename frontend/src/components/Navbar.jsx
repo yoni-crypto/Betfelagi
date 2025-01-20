@@ -1,14 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../context/authContext';
 
 const Navbar = () => {
     const { user, logout } = useContext(AuthContext);
     const [menuOpen, setMenuOpen] = useState(false);
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         logout();
-        window.location.reload();
+        navigate('/');
     };
 
     return (
