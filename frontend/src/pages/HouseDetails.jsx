@@ -70,7 +70,7 @@ const HouseDetails = () => {
     if (!house) return <p className="text-center text-gray-500">Loading...</p>;
 
     return (
-        <div className="container mx-auto mt-16 py-8 max-w-6xl px-4 lg:px-0">
+        <div className="container mx-auto lg:mt-16  py-8 max-w-6xl px-4 lg:px-0">
             <div className="flex flex-col lg:flex-row gap-8">
                 {/* Main Image Section */}
                 <div className="flex-1">
