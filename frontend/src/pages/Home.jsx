@@ -18,6 +18,7 @@ const Home = () => {
     const [isFilterModalOpen, setFilterModalOpen] = useState(false); // Mobile filter modal state
 
     const fetchHouses = async () => {
+        setLoading(true);
         try {
             const { data } = await axios.get('https://betfelagi-api.vercel.app/api/houses/get', {
                 params: { page: currentPage, ...filters },
@@ -220,10 +221,11 @@ const Home = () => {
                 </div>
 
                 {loading && (
-                    <div className="flex justify-center mt-4">
-                        <div className="animate-spin h-8 w-8 border-t-2 border-blue-500 rounded-full"></div>
-                    </div>
-                )}
+                <div className="flex justify-center items-center">
+                    <div className=" animate-spin h-6 w-6 border-t-2 border-blue-500 rounded-full mr-2"></div>
+                    <span>Loading...</span>
+                </div>
+            )}
 
                 {noResults && (
                     <div className="text-center text-red-500 font-semibold mt-4">
