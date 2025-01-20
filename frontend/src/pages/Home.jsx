@@ -90,7 +90,7 @@ const Home = () => {
     }, [currentPage, filters]);
 
     return (
-        <div className="mx-auto py-8">
+        <div className="mx-auto ">
             <header
                 className="relative bg-blue-50 px-6 md:px-24 lg:px-48 py-16 md:py-20 lg:py-24 bg-cover bg-center"
                 style={{ backgroundImage: 'url("./bg2.jpg")', backgroundRepeat: 'no-repeat' }}
