@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 
 const createHouse = async (req, res) => {
-    const { title, description, price, location, category, type } = req.body;
+    const { title, description, price, location, category, type, bedrooms, bathrooms, area } = req.body;
     const imageUrls = req.files ? req.files.map(file => file.path) : [];
 
     try {
@@ -16,6 +16,10 @@ const createHouse = async (req, res) => {
             user: req.user.id,
             category,
             type,
+            bedrooms: bedrooms || 1,
+            bathrooms: bathrooms || 1,
+            area: area || 0,
+            isExternalListing: false
         });
         res.status(201).json({ message: 'House listed successfully', house });
     } catch (error) {
@@ -23,12 +27,12 @@ const createHouse = async (req, res) => {
     }
 };
 
-
 const getAllHouses = async (req, res) => {
     const { page = 1, limit = 20 } = req.query; 
     try {
         const houses = await House.find()
             .populate('user', 'username email phoneNumber')
+            .sort({ createdAt: -1 })
             .skip((page - 1) * limit)
             .limit(Number(limit));
 
@@ -119,7 +123,6 @@ const editHouse = async (req, res) => {
             return res.status(403).json({ message: 'You can only edit your own listings' });
         }
 
-        // Update house fields
         house.title = title || house.title;
         house.description = description || house.description;
         house.price = price || house.price;
@@ -127,12 +130,10 @@ const editHouse = async (req, res) => {
         house.category = category || house.category;
         house.type = type || house.type;
 
-        // Remove specified images from Cloudinary
         if (imagesToRemove && Array.isArray(imagesToRemove)) {
             house.images = house.images.filter(img => !imagesToRemove.includes(img));
         }
 
-        // Append new images if any
         if (imageUrls.length > 0) {
             house.images = [...house.images, ...imageUrls];
         }
@@ -144,6 +145,5 @@ const editHouse = async (req, res) => {
         res.status(500).json({ message: 'Failed to update house', error });
     }
 };
-
 
 module.exports = { createHouse, getAllHouses, getHouseById, getFilteredHouses, deleteHouse, editHouse };

@@ -1,59 +1,133 @@
 import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/authContext';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { FaHome, FaEye, FaEyeSlash } from 'react-icons/fa';
+import Navbar from '../components/Navbar';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
+    });
+    const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
+        setLoading(true);
+
         try {
-            await login(email, password);
-            toast.success('Login successful!');
-            setTimeout(() => navigate('/'), 2000); // Redirect after 2 seconds to allow the toast to be visible
-        } catch (error) {
-            console.error(error);
-            const errorMessage = error.response?.data?.message || 'Login failed. Please check your credentials and try again.';
-            toast.error(errorMessage);
+            await login(formData.email, formData.password);
+            navigate('/');
+        } catch (err) {
+            setError(err.response?.data?.message || 'Login failed');
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
-        <div className="container mx-auto mt-24 py-8 max-w-md">
-            <ToastContainer position="top-center" autoClose={3000} />
-            <h2 className="text-xl font-bold text-center mb-6">Login</h2>
-            <form onSubmit={handleLogin} className="bg-white shadow-md rounded-md p-6">
-                <div className="mb-4">
-                    <label className="block text-sm font-semibold">Email</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1"
-                        required
-                    />
+        <div className="min-h-screen bg-gray-50">
+            <Navbar />
+            <div className="flex items-center justify-center min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-md w-full space-y-8">
+                    {/* Logo */}
+                    <div className="flex items-center justify-center mb-8">
+                        <div className="flex items-center space-x-2 text-3xl font-black tracking-tight">
+                            <div className="w-10 h-10 bg-rose-600 rounded-lg flex items-center justify-center">
+                                <FaHome className="text-white text-lg" />
+                            </div>
+                            <span className="bg-gradient-to-r from-rose-600 to-rose-800 bg-clip-text text-transparent font-['Dancing_Script'] font-semibold text-4xl italic">
+                                HomeHive
+                            </span>
+                        </div>
+                    </div>
+
+                    {/* Login Form */}
+                    <div className="bg-white py-8 px-6 shadow-xl rounded-xl">
+                        <div className="text-center mb-8">
+                            <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome back</h2>
+                            <p className="text-gray-600">Sign in to your account</p>
+                        </div>
+
+                        {error && (
+                            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                                <p className="text-red-600 text-sm">{error}</p>
+                            </div>
+                        )}
+
+                        <form onSubmit={handleSubmit} className="space-y-6">
+                            <div>
+                                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                                    Email address
+                                </label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-colors duration-200"
+                                    placeholder="Enter your email"
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+                                    Password
+                                </label>
+                                <div className="relative">
+                                    <input
+                                        type={showPassword ? 'text' : 'password'}
+                                        id="password"
+                                        name="password"
+                                        value={formData.password}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-colors duration-200"
+                                        placeholder="Enter your password"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors duration-200"
+                                    >
+                                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                className="w-full bg-rose-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-rose-700 focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {loading ? 'Signing in...' : 'Sign in'}
+                            </button>
+                        </form>
+
+                        <div className="mt-6 text-center">
+                            <p className="text-gray-600">
+                                Don't have an account?{' '}
+                                <Link to="/register" className="text-rose-600 hover:text-rose-700 font-medium transition-colors duration-200">
+                                    Sign up
+                                </Link>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div className="mb-4">
-                    <label className="block text-sm font-semibold">Password</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1"
-                        required
-                    />
-                </div>
-                <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded-md w-full">
-                    Login
-                </button>
-            </form>
-            <div className="mt-4 text-center">
-                <p className="text-sm">Don't have an account? <Link to="/register" className="text-blue-600 hover:underline">Register here</Link>.</p>
             </div>
         </div>
     );

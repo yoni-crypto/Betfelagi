@@ -11,8 +11,8 @@ const router = express.Router();
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        folder: 'profile-images', // Optional Cloudinary folder name
-        allowed_formats: ['jpg', 'jpeg', 'png','webp','avif'], // Allowed formats
+        folder: 'profile-images',
+        allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'avif'],
     },
 });
 const upload = multer({ storage });

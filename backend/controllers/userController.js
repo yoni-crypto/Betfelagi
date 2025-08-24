@@ -17,8 +17,8 @@ const getUserProfile = async (req, res) => {
                 email: user.email,
                 phoneNumber: user.phoneNumber,
                 profileImage: user.profileImage,
-                firstName:user.firstName,
-                lastName:user.lastName,
+                firstName: user.firstName,
+                lastName: user.lastName,
             },
             listings: listings,
         });
@@ -26,6 +26,7 @@ const getUserProfile = async (req, res) => {
         res.status(500).json({ message: 'Failed to fetch user profile', error });
     }
 };
+
 const getUserHouses = async (req, res) => {
     const { userId } = req.params;
 
@@ -46,8 +47,8 @@ const getUserHouses = async (req, res) => {
                 phoneNumber: user.phoneNumber,
                 email: user.email,
                 profileImage: user.profileImage,
-                firstName:user.firstName,
-                lastName:user.lastName,
+                firstName: user.firstName,
+                lastName: user.lastName,
             },
             listings: houses,
         });
@@ -57,25 +58,21 @@ const getUserHouses = async (req, res) => {
     }
 };
 
-
-
 const uploadProfileImage = async (req, res) => {
     try {
-        const { id } = req.user; // Assuming `req.user` is populated via authentication middleware
+        const { id } = req.user;
         const user = await User.findById(id);
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        // Check if file exists
         if (!req.file) {
             return res.status(400).json({ message: 'No file uploaded' });
         }
 
-        // Update user profile image
         const result = await cloudinary.uploader.upload(req.file.path, {
-            folder: 'profile-images', // Optional: Cloudinary folder
+            folder: 'profile-images',
         });
 
         user.profileImage = result.secure_url;
@@ -87,9 +84,6 @@ const uploadProfileImage = async (req, res) => {
         res.status(500).json({ message: 'Failed to upload profile image', error });
     }
 };
-
-
-
 
 module.exports = {
     getUserProfile,

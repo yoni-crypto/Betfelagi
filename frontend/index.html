@@ -4,7 +4,57 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/logo.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bet Felagi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>HomeHive</title>
+    <style>
+        /* Custom dropdown styling */
+        select option {
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #374151;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        select option:hover {
+            background-color: #fef2f2;
+            color: #dc2626;
+        }
+        
+        select option:checked {
+            background-color: #dc2626;
+            color: white;
+        }
+        
+        select:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.2);
+        }
+        
+        /* Custom scrollbar for dropdown */
+        select::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        select::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 3px;
+        }
+        
+        select::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        
+        select::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
   </head>
   <body>
     <div id="root"></div>

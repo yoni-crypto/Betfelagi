@@ -9,6 +9,12 @@ const HouseSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     category: { type: String, required: true },
     type: { type: String, enum: ['Rent', 'Sell'], required: true },
+    bedrooms: { type: Number, default: 1 },
+    bathrooms: { type: Number, default: 1 },
+    area: { type: Number, default: 0 },
+    isExternalListing: { type: Boolean, default: false },
+    externalId: { type: String, unique: true, sparse: true },
+    lastUpdated: { type: Date, default: Date.now }
 }, { timestamps: true });
 
 module.exports = mongoose.model('House', HouseSchema);
